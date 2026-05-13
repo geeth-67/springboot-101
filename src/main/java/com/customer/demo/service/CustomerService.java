@@ -20,4 +20,6 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+
+    public Customer createCustomer = new Customer();
 }
