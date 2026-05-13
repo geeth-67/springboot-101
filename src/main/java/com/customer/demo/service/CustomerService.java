@@ -1,5 +1,6 @@
 package com.customer.demo.service;
 
+import com.customer.demo.DTO.CreateCustomerRequest;
 import com.customer.demo.models.Customer;
 import com.customer.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,16 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer createCustomer = new Customer();
+    public Customer createCustomer(CreateCustomerRequest request) {
+
+        if (customerRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Customer already exists with the email" + request.getEmail());
+        }
+        Customer customer = new Customer(request.getFirstName(),
+                request.getLastName() , request.getEmail());
+
+        customer.setPhoneNo(request.getPhoneNo());
+
+        return customerRepository.save(customer);
+    }
 }
