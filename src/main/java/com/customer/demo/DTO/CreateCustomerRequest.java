@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class createCustomerRequest {
+public class CreateCustomerRequest {
 
     @NotBlank(message = "first name is required")
     @Size(min = 3 , max = 100 , message = "first name has to be between 1 - 100")
